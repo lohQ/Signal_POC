@@ -1,6 +1,6 @@
 # signal_poc
 
-A simple Flutter project to try out basic end-to-end-encryption with Signal protocol. 
+A simple Flutter project to try out basic end-to-end-encryption with Signal protocol. Uses the cryptography package (https://pub.dev/packages/cryptography). 
 
 ## features
 
