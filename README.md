@@ -1,16 +1,35 @@
 # signal_poc
 
-A new Flutter project.
+A simple Flutter project to try out basic end-to-end-encryption with Signal protocol. 
 
-## Getting Started
+## features
 
-This project is a starting point for a Flutter application.
+#### Triple Diffie Hellman Key Exchange
+#### Double Ratchet algorithm
 
-A few resources to get you started if this is your first Flutter project:
+## note
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+The Signal protocol used in this project is not complete. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### verifying signature
+
+This require xeddsa algorithm, which is currently not available in dart. However, as there is C code for it, could possibly just plug it in using dart:ffi. Or else could just rewrite the algorithm in dart. 
+
+#### generating root key and chain key from shared master secret 
+
+In the documentation of Signal Protocol, there is no clear description of how to generate root key from shared master secret (or perhaps I missed it?), hence in this project it's simply rootKey = sharedMasterSecret. 
+
+As for chain keys, when the first chain key is generated, Alice should already knows Bob's public ratchet key -- which I am not sure how it happens. So in this project the initial chain keys are simply generated using hashed userId as input. 
+
+#### handling out of order messages
+
+Due to the way 'instant messaging' is implemented in this project, it's quite hard to simulate such condition. 
+
+#### correct message key format
+
+The message key in Signal protocol is 80 bytes long. Here it is only 32 bytes. 
+
+#### header encryption, AEAD, sesame algorithm
+
+Ignored for simplicity.
+
