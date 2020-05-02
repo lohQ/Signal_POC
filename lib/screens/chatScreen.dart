@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:signal_poc/crypto/symmetricRatchet.dart';
+import 'package:signal_poc/crypto/cryptoSession.dart';
 import 'package:signal_poc/models/message.dart';
 import 'package:signal_poc/models/messageStream.dart';
 import 'package:signal_poc/models/user.dart';
@@ -20,14 +20,14 @@ class ChatScreenState extends State<ChatScreen>{
 
   List<Message> messageList;
   TextEditingController controller;
-  SymmetricRatchetSession ratchetSession;
+  CryptoSession ratchetSession;
 
   @override
   void initState(){
     super.initState();
     messageList = List<Message>();
     controller = TextEditingController();
-    ratchetSession = SymmetricRatchetSession(widget.self.id);
+    ratchetSession = CryptoSession(widget.self.id);
     widget.messageStream.stream
     .where((m)=>m.receiverId == widget.self.id)
     .listen((m){

@@ -6,7 +6,7 @@ import 'package:signal_poc/crypto/x3dh.dart';
 import 'package:signal_poc/models/keyStore.dart';
 import 'package:signal_poc/models/message.dart';
 
-class SymmetricRatchetSession{
+class CryptoSession{
 
   final String selfId;
   KeyBundle oppBundle;
@@ -25,7 +25,7 @@ class SymmetricRatchetSession{
   // for temporarily storing keys when received messages went out of order
   List<SecretKey> receivingMessageKeys;
 
-  SymmetricRatchetSession(this.selfId){
+  CryptoSession(this.selfId){
     keyStore = KeyStore();
     // this should be done in higher level
     if(keyStore.records.firstWhere((r)=>r.userId == selfId, orElse: ()=>null) == null){
