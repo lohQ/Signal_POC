@@ -4,7 +4,7 @@ A simple Flutter project to try out basic end-to-end-encryption with Signal prot
 
 ## features
 
-#### Triple Diffie Hellman Key Exchange
+#### Extended Triple Diffie Hellman Key Exchange
 #### Double Ratchet algorithm
 
 ## note
@@ -17,7 +17,7 @@ This require xeddsa algorithm, which is currently not available in dart. However
 
 #### generating root key and chain key from shared master secret 
 
-In the documentation of Signal Protocol, there is no clear description of how to generate root key from shared master secret (or perhaps I missed it?), hence in this project it's simply rootKey = sharedMasterSecret. 
+In the documentation of Signal Protocol, there is no clear description of how to generate root key from shared master secret, hence in this project it's simply rootKey = sharedMasterSecret. 
 
 As for chain keys, when the first chain key is generated, Alice should already knows Bob's public ratchet key -- which I am not sure how it happens. So in this project the initial chain keys are simply generated using hashed userId as input. 
 
